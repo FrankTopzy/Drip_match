@@ -6,7 +6,7 @@ function Header() {
   const { isDark, setIsDark } = useDripmatch();
 
   return (
-    <div className={`flex justify-center bg-linear-to-r from-(--bg-color) from-10% via-(--bg-color2) via-70% to-(--bg-color3) to-95%`}>
+    <div className={`flex justify-center bg-linear-to-r from-(--bg-color) from-10% via-(--bg-color2) via-70% to-(--bg-color3) to-95% fixed w-full lg:px-20 z-99`}>
       <header className="flex justify-between max-w-(--max-w) w-full py-5 text-(--text-color)">
         <div className="uppercase italic">Dripmatch</div>
 
