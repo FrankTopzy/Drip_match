@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import heroPic1 from '../../assets/heroPic1.png'
 import heroFIt1 from '../../assets/testFit1.jpg'
-import { FaArrowLeft, FaArrowRight, FaLink } from 'react-icons/fa6'
+import { FaArrowRight, FaLink } from 'react-icons/fa6'
 
 function Homepage() {
   return (
