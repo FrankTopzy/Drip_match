@@ -1,6 +1,7 @@
 import { FaSun } from "react-icons/fa6"
 import { useDripmatch } from "../Context";
 import Styles from './header.module.css'
+import { Link } from "react-router-dom";
 
 
 function Header() {
@@ -13,10 +14,10 @@ function Header() {
 
         <div>
           <ul className={`${Styles.nav_list} flex gap-15`}>
-            <li>Home</li>
-            <li>Laboratory</li>
-            <li>Favorites</li>
-            <li>Settings</li>
+            <Link to={'/'}>Home</Link>
+            <Link to={'/lab'}>Laboratory</Link>
+            <Link to={'/favorites'}>Favorites</Link>
+            <Link to={'/settings'}>Settings</Link>
           </ul>
         </div>
 
