@@ -1,1 +1,25 @@
 @import "tailwindcss";
+
+:root {
+  --bg-color: black;
+  --bg-color2: #000000cc;
+  --bg-color3: #000000f2;
+  --text-color: white;
+  --max-w: 93.75rem;
+}
+
+.light-mode {
+  --bg-color: rgb(255, 255, 255);
+  --bg-color2: #9b9b9bcc;
+  --bg-color3: #d6d6d6f2;
+  --text-color: black;
+}
+
+button {
+  cursor: pointer;
+}
+
+h1 {
+  font-size: 64px;
+  font-weight: 600;
+}
