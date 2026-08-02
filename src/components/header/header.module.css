@@ -1,4 +1,4 @@
-.nav_list li {
+.nav_list a {
   position: relative;
   display: inline-block;
   padding: 10px 20px;
@@ -6,7 +6,7 @@
   cursor: pointer;
 }
 
-.nav_list li::before {
+.nav_list a::before {
   content: '';
   position: absolute;
   bottom: 0;
@@ -18,6 +18,6 @@
   transition: transform 0.3s ease;
 }
 
-.nav_list  li:hover::before{
+.nav_list  a:hover::before{
   transform: scaleX(1);
 }
