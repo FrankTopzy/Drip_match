@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom'
 import heroPic1 from '../../assets/heroPic1.png'
 import heroFIt1 from '../../assets/testFit1.jpg'
-import { FaLink } from 'react-icons/fa6'
+import { FaArrowLeft, FaArrowRight, FaLink } from 'react-icons/fa6'
 
 function Homepage() {
   return (
     <div className="min-h-205 bg-radial-[at_50%_70%] from-black/70 via-(--bg-color3) to-(--bg-color) to-90% flex justify-center lg:px-20 overflow-hidden">
-      <section className={`text-(--text-color) uppercase relative flex justify-between max-w-(--max-w) w-full py-10`}>
+      <section className={`text-(--text-color) uppercase relative flex justify-between max-w-(--max-w) w-full py-15`}>
         <div className="flex flex-col justify-between lg:py-5">
           <h1 className='font-bold' data-aos="fade-right"
             data-aos-anchor="#example-anchor"
@@ -16,12 +16,14 @@ function Homepage() {
           </h1>
           
           <div>
-            <p className='normal-case' >Discover elevated essentials and trend <br/> peices crafted to fit your lifestyle</p>
-            <button className="bg-red-800 px-4 py-2 mt-7 text-white">Explore Collection</button>
+            <p className='normal-case' >Try Outfits On Instantly See how clothes look on you before <br/> you buy with our AI-powered virtual try-on experience.</p>
+            <button className="bg-red-800 px-4 py-2 mt-7 text-white uppercase flex items-center gap-2 group ">
+              Go to Lab <FaArrowRight className='group-hover:translate-x-1 transition-all'/>
+            </button>
           </div>
         </div>
 
-        <div className='absolute right-[30%] bottom-0'>
+        <div className='absolute right-[30%] bottom-0 top-15'>
           <img src={heroPic1} alt="" className='lg:w-130' data-aos='zoom-in-up'/>
         </div>
 
@@ -29,7 +31,7 @@ function Homepage() {
           <h1 data-aos="fade-left"
             data-aos-anchor="#example-anchor"
             data-aos-offset="500"
-            data-aos-duration="500">Made <br/> seamleass</h1>
+            data-aos-duration="500">Made <br/> seamless</h1>
 
           <div className='group w-50 p-2 bg-(--bg-color2) self-end' data-aos="zoom-in-left">
             <div className='relative'>
