@@ -5,9 +5,9 @@ import { FaLink } from 'react-icons/fa6'
 
 function Homepage() {
   return (
-    <div className="min-h-235 bg-radial-[at_50%_70%] from-black/70 via-(--bg-color3) to-(--bg-color) to-90% flex justify-center">
-      <section className={`text-(--text-color) uppercase relative flex justify-between max-w-(--max-w) w-full`}>
-        <div className="flex flex-col justify-between py-30">
+    <div className="min-h-205 bg-radial-[at_50%_70%] from-black/70 via-(--bg-color3) to-(--bg-color) to-90% flex justify-center lg:px-20">
+      <section className={`text-(--text-color) uppercase relative flex justify-between max-w-(--max-w) w-full py-10`}>
+        <div className="flex flex-col justify-between lg:py-5">
           <h1 className='font-bold'>Everyday <br/> Style</h1>
           
           <div>
@@ -16,8 +16,8 @@ function Homepage() {
           </div>
         </div>
 
-        <div className='absolute right-[25%] bottom-0'>
-          <img src={heroPic1} alt="" width={600}/>
+        <div className='absolute right-[30%] bottom-0'>
+          <img src={heroPic1} alt="" className='lg:w-130'/>
         </div>
 
         <div className='flex flex-col justify-end pb-5'>
