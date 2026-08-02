@@ -5,6 +5,7 @@ import Homepage from "./pages/home/Homepage";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from "react";
+import Laboratory from "./pages/lab/Laboratory";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
      <Header/>
      <Routes>
       <Route path="/" element={<Homepage/>}/>
+      <Route path="/lab" element={<Laboratory/>}/>
      </Routes>
     </div>
   )
