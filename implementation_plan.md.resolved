@@ -1,0 +1,144 @@
+# Laboratory Page — YouCam Apparel VTO Integration
+
+Build a fully functional virtual try-on experience in the **Laboratory** page using YouCam's generative Apparel VTO API, so shoppers can see how clothes look on them before buying.
+
+## Current State
+
+- **`src/data/apiFetch.js`** — Contains working API logic (start task → poll) but:
+  - Uses hardcoded sample URLs instead of user-uploaded images
+  - Uses `src_file_url` / `ref_file_url` (public URL approach), which works when images are publicly hosted
+  - Self-executes via an IIFE at import time (not usable as a callable service)
+  - Not TypeScript, no error handling for the UI
+- **`src/pages/lab/Laboratory.tsx`** — Empty shell (`<div>Laboratory</div>`)
+- **No CORS proxy** — The YouCam API (`yce-api-01.makeupar.com`) will block direct browser requests. We need a Vite dev proxy.
+
+## Open Questions
+
+> [!IMPORTANT]
+> **API Key**: Do you already have a `.env` file with `VITE_YOUCAM_API_KEY` set? I see it referenced in `apiFetch.js` but `.env` is gitignored. I'll write the code assuming it exists — please confirm you have a valid key or I can add a placeholder.
+
+> [!IMPORTANT]
+> **Image Sources**: The current `apiFetch.js` uses YouCam's sample hosted URLs (`src_file_url` / `ref_file_url`). The two integration approaches are:
+> 1. **Public URL approach** (current) — User pastes a URL or we use pre-selected garment images. Simpler, no file upload needed.
+> 2. **File Upload approach** — User uploads their own photo from disk. This requires the YouCam File Upload API (`/s2s/v2.0/file`) to get a `file_id`, then using `src_file_id` / `ref_file_id` in the task request.
+> 
+> **I plan to support both**: Pre-curated garments (public URLs) + user photo upload. The user photo will be uploaded via the File API, garments will use public URLs. Let me know if you have a preference.
+
+## Proposed Changes
+
+### Vite Dev Proxy (CORS fix)
+
+#### [MODIFY] [vite.config.ts](file:///c:/Users/adeoy/PROG/Drip_match/vite.config.ts)
+Add a proxy rule so browser requests to `/api/youcam/` are forwarded to `https://yce-api-01.makeupar.com`, bypassing CORS in development.
+
+```ts
+server: {
+  proxy: {
+    '/api/youcam': {
+      target: 'https://yce-api-01.makeupar.com',
+      changeOrigin: true,
+      rewrite: (path) => path.replace(/^\/api\/youcam/, ''),
+    }
+  }
+}
+```
+
+---
+
+### API Service Layer
+
+#### [NEW] [youCamService.ts](file:///c:/Users/adeoy/PROG/Drip_match/src/services/youCamService.ts)
+A proper TypeScript module exporting reusable async functions:
+
+- **`startTryOnTask(garmentUrl, referenceUrl, category?)`** — POST to start a cloth VTO task using public URLs
+- **`uploadFile(file: File)`** — Upload a user photo via the File API, returns a `file_id`
+- **`startTryOnTaskWithFileIds(srcFileId, refFileId, category?)`** — POST using file IDs instead of URLs
+- **`pollTaskResult(taskId)`** — Poll until success/error, with configurable intervals
+- **Types**: `TryOnResult`, `TaskStatus`, `GarmentCategory`
+
+This replaces the self-executing `apiFetch.js`. The old file will remain for reference but won't be imported.
+
+---
+
+### Laboratory Page (main feature)
+
+#### [NEW] [Laboratory.tsx](file:///c:/Users/adeoy/PROG/Drip_match/src/pages/lab/Laboratory.tsx) (overwrite)
+A premium, multi-step virtual try-on interface:
+
+**Layout — 3 panels:**
+1. **Garment Selection Panel** (left) — Grid of pre-curated garment images with category tabs (Tops, Bottoms, Full Outfits). Clicking a garment selects it.
+2. **Try-On Stage** (center) — The main area showing:
+   - Upload zone for the user's reference photo (drag & drop + click to browse)
+   - Once both garment + photo are selected → "Try It On" CTA button
+   - Loading state with animated progress indicator during API processing
+   - Result display with before/after comparison slider
+3. **Details & Actions Panel** (right) — Shows garment info, confidence tips, and action buttons (Save to Favorites, Try Another)
+
+**Visual design:**
+- Dark-mode-first, consistent with your existing `--bg-color` / `--text-color` system
+- Glassmorphism cards with subtle backdrop blur
+- Animated transitions between steps (Framer Motion)
+- Red-800 accent color matching your existing CTA buttons
+- Responsive: stacks vertically on mobile
+
+#### [NEW] [laboratory.module.css](file:///c:/Users/adeoy/PROG/Drip_match/src/pages/lab/laboratory.module.css)
+Scoped styles for the Laboratory page — glassmorphism panels, drop zone animations, before/after slider, loading states.
+
+---
+
+### Supporting Components
+
+#### [NEW] [GarmentGrid.tsx](file:///c:/Users/adeoy/PROG/Drip_match/src/pages/lab/components/GarmentGrid.tsx)
+Displays the curated garment catalog with selection state, hover effects, and category filtering.
+
+#### [NEW] [PhotoUploader.tsx](file:///c:/Users/adeoy/PROG/Drip_match/src/pages/lab/components/PhotoUploader.tsx)
+Drag-and-drop photo upload component with preview, file validation (type/size), and animated feedback.
+
+#### [NEW] [ResultViewer.tsx](file:///c:/Users/adeoy/PROG/Drip_match/src/pages/lab/components/ResultViewer.tsx)
+Displays the try-on result with a before/after comparison slider, download button, and "Try Another" action.
+
+#### [NEW] [LoadingOverlay.tsx](file:///c:/Users/adeoy/PROG/Drip_match/src/pages/lab/components/LoadingOverlay.tsx)
+Animated loading state shown while the API processes the try-on. Includes a pulsing garment icon and status messages.
+
+---
+
+### Sample Garment Data
+
+#### [NEW] [garments.ts](file:///c:/Users/adeoy/PROG/Drip_match/src/data/garments.ts)
+A catalog of sample garments using YouCam's publicly hosted sample images, structured with:
+- `id`, `name`, `category`, `imageUrl`, `description`, `price`
+- Categories: `upper_body`, `lower_body`, `full_body`
+
+---
+
+### Context Update
+
+#### [MODIFY] [Context.tsx](file:///c:/Users/adeoy/PROG/Drip_match/src/components/Context.tsx)
+No changes needed — the existing dark mode context is sufficient. Laboratory state will be managed locally.
+
+---
+
+### Homepage Link Fix
+
+#### [MODIFY] [Homepage.tsx](file:///c:/Users/adeoy/PROG/Drip_match/src/pages/home/Homepage.tsx)
+Wire the "Go to Lab" button to actually navigate to `/lab` (currently it's a plain `<button>`, not a `<Link>`).
+
+---
+
+## Verification Plan
+
+### Automated Tests
+- `npm run dev` — Verify the app starts without errors
+- Navigate to `/lab` and confirm the UI renders
+- Verify the Vite proxy works by checking network requests go through `/api/youcam/` 
+
+### Manual Verification
+1. Select a garment from the grid → confirm it's highlighted
+2. Upload a reference photo → confirm preview appears
+3. Click "Try It On" → confirm loading state appears
+4. Verify the API returns a result image (requires a valid `VITE_YOUCAM_API_KEY`)
+5. Test dark/light mode toggle on the Laboratory page
+6. Test responsive layout at mobile breakpoints
+
+### Browser Test
+- Open the app in browser and walk through the full try-on flow, capturing a recording
