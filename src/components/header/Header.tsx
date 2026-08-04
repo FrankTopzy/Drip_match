@@ -17,6 +17,7 @@ function Header() {
             <Link to={'/'}>Home</Link>
             <Link to={'/lab'}>Laboratory</Link>
             <Link to={'/favorites'}>Favorites</Link>
+            <Link to={'/drafts'}>[Drafts]</Link>
             <Link to={'/settings'}>Settings</Link>
           </ul>
         </div>
