@@ -6,5 +6,15 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [
     react(), 
-    tailwindcss()],
+    tailwindcss(),
+  ],
+  server: {
+    proxy: {
+      '/api/youcam': {
+        target: 'https://yce-api-01.makeupar.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/youcam/, ''),
+      },
+    },
+  },
 })
