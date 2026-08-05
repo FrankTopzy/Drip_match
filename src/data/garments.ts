@@ -1,4 +1,5 @@
 export type GarmentCategoryFilter = 'all' | 'upper_body' | 'lower_body' | 'full_body';
+import pic1 from '/garments/testFit1.jpg'
 
 export interface Garment {
   id: string;
@@ -28,8 +29,7 @@ export const garments: Garment[] = [
     id: 'g2',
     name: 'Denim Jacket',
     category: 'upper_body',
-    imageUrl:
-      'https://plugins-media.makeupar.com/strapi/assets/clothes_02_6d4b31a00b.png',
+    imageUrl: pic1,
     description: 'Rugged denim jacket with a modern slim fit.',
     price: '$89.99',
   },
