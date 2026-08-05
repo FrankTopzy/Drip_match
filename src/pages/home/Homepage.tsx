@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import heroPic1 from '../../assets/heroPic1.png'
-import heroFIt1 from '../../assets/testFit1.jpg'
+import heroFIt1 from '/garments/testFit1.jpg'
 import { FaArrowRight, FaLink } from 'react-icons/fa6'
 
 function Homepage() {
@@ -17,7 +17,7 @@ function Homepage() {
           
           <div>
             <p className='normal-case' >Try Outfits On Instantly See how clothes look on you before <br/> you buy with our AI-powered virtual try-on experience.</p>
-            <Link to="/lab" className="bg-red-800 px-4 py-2 mt-7 text-white uppercase flex items-center gap-2 group inline-flex">
+            <Link to="/lab" className="bg-red-800 px-4 py-2 mt-7 text-white uppercase flex items-center gap-2 group">
               Go to Lab <FaArrowRight className='group-hover:translate-x-1 transition-all'/>
             </Link>
           </div>
