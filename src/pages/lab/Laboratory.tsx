@@ -55,9 +55,11 @@ function Laboratory() {
       if (referenceFile) {
         // User uploaded a file — use the File Upload flow
         setStatusMessage('Uploading your photo...');
-        const fileId = await uploadFile(referenceFile);
 
         setStatusMessage('Starting try-on task...');
+
+        const fileId = await uploadFile(referenceFile);
+        
         const taskId = await startTryOnTaskWithUploadedUser(
           fileId,
           selectedGarment.imageUrl,
@@ -85,7 +87,7 @@ function Laboratory() {
     }
   }, [selectedGarment, referencePhotoUrl, referenceFile]);
 
-  
+
 
   // Reset to try another
   const handleTryAnother = useCallback(() => {
