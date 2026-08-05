@@ -1,5 +1,5 @@
 export type GarmentCategoryFilter = 'all' | 'upper_body' | 'lower_body' | 'full_body';
-import pic1 from '/garments/testFit1.jpg'
+//import pic1 from '/garments/testFit1.jpg'
 
 export interface Garment {
   id: string;
@@ -21,7 +21,7 @@ export const garments: Garment[] = [
     name: 'Classic White Tee',
     category: 'upper_body',
     imageUrl:
-      'https://plugins-media.makeupar.com/strapi/assets/clothes_01_10be1e1a9b.png',
+      'https://drip-match.vercel.app/garments/testFit6.jpg',
     description: 'A clean, minimalist white t-shirt for everyday wear.',
     price: '$29.99',
   },
@@ -29,7 +29,7 @@ export const garments: Garment[] = [
     id: 'g2',
     name: 'Denim Jacket',
     category: 'upper_body',
-    imageUrl: pic1,
+    imageUrl: 'https://drip-match.vercel.app/garments/testFit1.jpg',
     description: 'Rugged denim jacket with a modern slim fit.',
     price: '$89.99',
   },
@@ -37,17 +37,15 @@ export const garments: Garment[] = [
     id: 'g3',
     name: 'Striped Polo',
     category: 'upper_body',
-    imageUrl:
-      'https://plugins-media.makeupar.com/strapi/assets/clothes_03_88c2bf9b73.png',
-    description: 'Casual striped polo shirt, breathable cotton blend.',
+    imageUrl: 'https://drip-match.vercel.app/garments/testFit2.jpg',
+    description: 'Argentina FIFA World Cup 2026 Jersey',
     price: '$39.99',
   },
   {
     id: 'g4',
     name: 'Floral Blouse',
     category: 'upper_body',
-    imageUrl:
-      'https://plugins-media.makeupar.com/strapi/assets/clothes_04_02e0302a54.png',
+    imageUrl: 'https://drip-match.vercel.app/garments/testFit3.jpg',
     description: 'Elegant floral blouse with a relaxed silhouette.',
     price: '$49.99',
   },
@@ -55,8 +53,7 @@ export const garments: Garment[] = [
     id: 'g5',
     name: 'Graphic Hoodie',
     category: 'upper_body',
-    imageUrl:
-      'https://plugins-media.makeupar.com/strapi/assets/clothes_05_c5cfcdded5.png',
+    imageUrl: 'https://drip-match.vercel.app/garments/testFit4.jpg',
     description: 'Oversized graphic hoodie for streetwear looks.',
     price: '$59.99',
   },
@@ -64,8 +61,7 @@ export const garments: Garment[] = [
     id: 'g6',
     name: 'Linen Shirt',
     category: 'upper_body',
-    imageUrl:
-      'https://plugins-media.makeupar.com/strapi/assets/clothes_06_59f971eab9.png',
+    imageUrl: 'https://drip-match.vercel.app/garments/testFit5.jpg',
     description: 'Lightweight linen button-up, perfect for summer.',
     price: '$44.99',
   },
