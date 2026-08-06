@@ -20,8 +20,7 @@ export const garments: Garment[] = [
     id: 'g1',
     name: 'Classic White Tee',
     category: 'upper_body',
-    imageUrl:
-      'https://drip-match.vercel.app/garments/testFit6.jpg',
+    imageUrl: 'https://drip-match.vercel.app/garments/testFit6.jpg',
     description: 'A clean, minimalist white t-shirt for everyday wear.',
     price: '$29.99',
   },
@@ -35,7 +34,7 @@ export const garments: Garment[] = [
   },
   {
     id: 'g3',
-    name: 'Striped Polo',
+    name: 'Argentina Jersey',
     category: 'upper_body',
     imageUrl: 'https://drip-match.vercel.app/garments/testFit2.jpg',
     description: 'Argentina FIFA World Cup 2026 Jersey',
