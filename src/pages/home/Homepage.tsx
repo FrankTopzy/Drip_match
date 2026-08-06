@@ -6,32 +6,48 @@ import { FaArrowRight, FaLink } from 'react-icons/fa6'
 function Homepage() {
   return (
     <div className="min-h-screen xl:min-h-250 bg-radial-[at_50%_70%] from-black/70 via-(--bg-color3) to-(--bg-color) to-90% flex justify-center lg:px-20 overflow-hidden">
-      <section className={`text-(--text-color) uppercase relative flex justify-between max-w-(--max-w) w-full py-15`}>
-        <div className="flex flex-col justify-between lg:py-5 xl:py-15">
-          <h1 className='font-bold' data-aos="fade-right"
+      <section className={`text-(--text-color) uppercase relative flex justify-between max-w-(--max-w) w-full pt-15`}>
+        <div className="flex flex-col justify-between px-5 py-10 xl:py-15">
+          <p className='font-semibold text-3xl md:text-6xl text-center md:text-left md:w-50'
+            data-aos="fade-right"
             data-aos-anchor="#example-anchor"
             data-aos-offset="500"
             data-aos-duration="500">
-              Everyday <br/> Style
-          </h1>
+              Everyday Style <span className='md:hidden'>Made Seamless</span>
+          </p>
+
+          <div className='md:hidden group w-50 p-2 bg-(--bg-color2) self-center m-5' data-aos="flip-left">
+            <div className='relative'>
+              <div className='absolute bg-black/80 w-full h-0 justify-center items-center translate-y-full opacity-0 flex group-hover:translate-y-0 group-hover:opacity-100 transition-all group-hover:h-full'>
+                <Link to={'/guide'} className='hover:underline'> 
+                  <FaLink className='text-red-800 flex items-center w-full'/> 
+                  <p className='normal-case text-[10px]'>Try Cloth</p>
+                </Link>
+              </div>
+
+              <img src={heroFIt1} alt="" />
+            </div>
+          </div>
           
-          <div>
-            <p className='normal-case' >Try Outfits On Instantly See how clothes look on you before <br/> you buy with our AI-powered virtual try-on experience.</p>
-            <Link to="/lab" className="bg-red-800 px-4 py-2 mt-7 text-white uppercase inline-flex items-center gap-2 group">
+          <div className='text-center md:text-left'>
+            <p className='normal-case md:w-110' >Try outfits on instantly and see how clothes look on you before you buy with our AI-powered virtual try-on experience.</p>
+            <Link to="/lab" className="bg-red-800 px-4 py-2 mt-5 text-white uppercase inline-flex items-center gap-2 group">
               Go to Lab <FaArrowRight className='group-hover:translate-x-1 transition-all'/>
             </Link>
           </div>
         </div>
 
-        <div className='absolute right-[30%] bottom-0'>
+        <div className='opacity-0 md:opacity-100 absolute right-[30%] bottom-0 -z-1 md:z-1'>
           <img src={heroPic1} alt="" className='lg:w-130 xl:w-150' data-aos='zoom-in-up'/>
         </div>
 
-        <div className='flex flex-col justify-end pb-5'>
-          <h1 data-aos="fade-left"
+        <div className='hidden md:flex flex-col md:justify-end pb-5'>
+          <p data-aos="fade-left"
+          className='font-semibold text-3xl md:text-6xl mb-5'
             data-aos-anchor="#example-anchor"
             data-aos-offset="500"
-            data-aos-duration="500">Made <br/> seamless</h1>
+            data-aos-duration="500">Made <br/> seamless
+          </p>
 
           <div className='group w-50 p-2 bg-(--bg-color2) self-end' data-aos="zoom-in-left">
             <div className='relative'>
