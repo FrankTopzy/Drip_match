@@ -136,8 +136,10 @@ function Laboratory() {
               <div className="step-number">
                 {activeStep > i + 1 ? <FaCheckCircle /> : i + 1}
               </div>
+              
               <span>{s.label}</span>
             </div>
+
             {i < 2 && <div className="step-connector" />}
           </div>
         ))}
@@ -163,10 +165,7 @@ function Laboratory() {
       <div className="lab-content">
         {/* Left panel — Garment selection */}
         <div className="glass-panel">
-          <GarmentGrid
-            selectedGarment={selectedGarment}
-            onSelect={handleGarmentSelect}
-          />
+          <GarmentGrid selectedGarment={selectedGarment} onSelect={handleGarmentSelect}/>
         </div>
 
         {/* Center panel — Stage */}

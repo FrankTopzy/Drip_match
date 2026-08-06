@@ -9,17 +9,13 @@ interface PhotoUploaderProps {
   onClear: () => void;
 }
 
-export default function PhotoUploader({
-  onPhotoSelect,
-  selectedPhotoUrl,
-  onClear,
-}: PhotoUploaderProps) {
+export default function PhotoUploader({onPhotoSelect, selectedPhotoUrl, onClear}: PhotoUploaderProps) {
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleFile = useCallback(
-    (file: File) => {
+  const handleFile = useCallback((file: File) => {
       if (!file.type.startsWith('image/')) return;
+
       const previewUrl = URL.createObjectURL(file);
       onPhotoSelect(previewUrl, file);
     },
@@ -45,12 +41,10 @@ export default function PhotoUploader({
     setIsDragging(false);
   }, []);
 
-  const handleInputChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0];
       if (file) handleFile(file);
-    },
-    [handleFile],
+    }, [handleFile],
   );
 
   return (
@@ -67,11 +61,8 @@ export default function PhotoUploader({
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.3 }}
           >
-            <img
-              src={selectedPhotoUrl}
-              alt="Your reference"
-              className="photo-preview-img"
-            />
+            <img src={selectedPhotoUrl} alt="Your reference" className="photo-preview-img"/>
+            
             <button className="photo-remove-btn" onClick={onClear} title="Remove photo">
               <FaTrash />
             </button>

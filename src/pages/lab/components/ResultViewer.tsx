@@ -9,12 +9,7 @@ interface ResultViewerProps {
   onTryAnother: () => void;
 }
 
-export default function ResultViewer({
-  originalPhotoUrl,
-  resultImageUrl,
-  garmentName,
-  onTryAnother,
-}: ResultViewerProps) {
+export default function ResultViewer({originalPhotoUrl, resultImageUrl, garmentName, onTryAnother,}: ResultViewerProps) {
   const [sliderPosition, setSliderPosition] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
   const isDraggingRef = useRef(false);

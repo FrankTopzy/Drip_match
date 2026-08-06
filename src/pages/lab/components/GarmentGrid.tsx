@@ -8,24 +8,22 @@ interface GarmentGridProps {
   onSelect: (garment: Garment) => void;
 }
 
-const categories: { key: GarmentCategoryFilter; label: string }[] = [
+type Category = {
+  key: GarmentCategoryFilter;
+  label: string;
+}
+
+const categories: Category[] = [
   { key: 'all', label: 'All' },
   { key: 'upper_body', label: 'Tops' },
   { key: 'lower_body', label: 'Bottoms' },
   { key: 'full_body', label: 'Full Outfits' },
 ];
 
-export default function GarmentGrid({
-  selectedGarment,
-  onSelect,
-}: GarmentGridProps) {
-  const [activeCategory, setActiveCategory] =
-    useState<GarmentCategoryFilter>('all');
+export default function GarmentGrid({selectedGarment, onSelect}: GarmentGridProps) {
+  const [activeCategory, setActiveCategory] = useState<GarmentCategoryFilter>('all');
 
-  const filtered =
-    activeCategory === 'all'
-      ? garments
-      : garments.filter((g) => g.category === activeCategory);
+  const filtered = activeCategory === 'all' ? garments : garments.filter((g) => g.category === activeCategory);
 
   return (
     <div className="garment-panel">
@@ -34,8 +32,7 @@ export default function GarmentGrid({
       {/* Category tabs */}
       <div className="category-tabs">
         {categories.map((cat) => (
-          <button
-            key={cat.key}
+          <button key={cat.key}
             className={`category-tab ${activeCategory === cat.key ? 'category-tab--active' : ''}`}
             onClick={() => setActiveCategory(cat.key)}
           >
