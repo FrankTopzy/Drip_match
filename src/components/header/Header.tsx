@@ -17,11 +17,11 @@ function Header() {
 
         <div className="hidden md:block">
           <ul className={`${Styles.nav_list} flex gap-15`}>
-            <Link to={'/'}>Home</Link>
-            <Link to={'/lab'}>Laboratory</Link>
-            <Link to={'/favorites'}>Favorites</Link>
-            <Link to={'/drafts'}>[Drafts]</Link>
-            <Link to={'/settings'}>Settings</Link>
+            <li><Link to={'/'}>Home</Link></li>
+            <li><Link to={'/lab'}>Laboratory</Link></li>
+            <li><Link to={'/favorites'}>Favorites</Link></li>
+            <li><Link to={'/drafts'}>[Drafts]</Link></li>
+            <li><Link to={'/settings'}>Settings</Link></li>
           </ul>
         </div>
 
