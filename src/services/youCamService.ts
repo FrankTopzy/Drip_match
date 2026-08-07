@@ -79,9 +79,7 @@ export async function startTryOnTask(garmentUrl: string, referenceUrl: string, c
 
 
 // ─── File Upload Flow ───────────────────────────────────────────────────
-/*export async function uploadGarmentFromUrl(
-  garmentUrl: string
-): Promise<string> {
+/*export async function uploadGarmentFromUrl(garmentUrl: string): Promise<string> {
 
   console.log("Loading garment:", garmentUrl);
 
@@ -188,7 +186,7 @@ export async function startTryOnTaskWithUploadedUser(userFileId: string, garment
 
   //console.log("TASK ENDPOINT:", TASK_ENDPOINT);
   
-  console.log("REQUEST BODY:", body);
+  //console.log("REQUEST BODY:", body);
 
   console.log("Garment URL:", garmentUrl);
   const res = await fetch(TASK_ENDPOINT, {
@@ -207,7 +205,7 @@ export async function startTryOnTaskWithUploadedUser(userFileId: string, garment
   //console.log("STATUS:", res.status);
   //console.log("PAYLOAD:", payload);  
   const taskId = payload?.data?.task_id;
-  console.log("Polling task:", taskId);
+  //console.log("Polling task:", taskId);
   
 
   if (!taskId) {
