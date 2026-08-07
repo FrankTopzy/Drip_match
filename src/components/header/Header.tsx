@@ -2,7 +2,7 @@ import { FaSun } from "react-icons/fa6"
 import { useDripmatch } from "../Context";
 import Styles from './header.module.css'
 import { Link } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 
 function Header() {
