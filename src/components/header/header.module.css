@@ -4,7 +4,7 @@
   font-family: 'Seaweed Script';
 }
 
-.nav_list a {
+.nav_list li a {
   position: relative;
   display: inline-block;
   padding: 10px 20px;
@@ -24,6 +24,6 @@
   transition: transform 0.3s ease;
 }
 
-.nav_list  a:hover::before{
+.nav_list a:hover::before{
   transform: scaleX(1);
 }
