@@ -8,6 +8,9 @@ export const DripmatchContextProvider = ({children}: DripmatchContextPropType) =
   const [isDark, setIsDark] = useState<boolean>(() => {
     return localStorage.getItem('theme') === "darkMode"
   });
+  const [menuOpen, setMenuOpen] = useState<boolean>(() => {
+    return window.innerWidth > 768 && false
+  });
 
   useEffect(() => {
     if (isDark) {
@@ -22,9 +25,14 @@ export const DripmatchContextProvider = ({children}: DripmatchContextPropType) =
     
   }, [isDark])
 
+  //console.log(menuOpen);
+  
+
   const value = {
     isDark,
     setIsDark,
+    menuOpen,
+    setMenuOpen
   }
 
   return (
