@@ -7,7 +7,7 @@
   min-height: 100vh;
   background: var(--bg-color);
   color: var(--text-color);
-  padding: 9rem 1.5rem 3rem;
+  padding: 10.5rem 1.5rem 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -854,7 +854,7 @@
 
 @media (max-width: 640px) {
   .lab-page {
-    padding: 6rem 1rem 2rem;
+    padding: 7.5rem 1rem 2rem;
   }
 
   .lab-title {
