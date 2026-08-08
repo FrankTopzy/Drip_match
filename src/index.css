@@ -5,6 +5,7 @@
   --bg-color2: #000000cc;
   --bg-color3: #000000f2;
   --text-color: white;
+  --nav-list-bg: white;
   --max-w: 93.75rem;
 }
 
@@ -13,6 +14,7 @@
   --bg-color2: #9b9b9bcc;
   --bg-color3: #d6d6d6f2;
   --text-color: black;
+  --nav-list-bg: black;
 }
 
 button {
