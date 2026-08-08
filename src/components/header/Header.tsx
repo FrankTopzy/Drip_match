@@ -29,11 +29,11 @@ function Header() {
 
 
   return (
-    <div className={`flex justify-center bg-linear-to-r from-(--bg-color) from-10% via-(--bg-color2) via-70% to-(--bg-color3) to-95% fixed w-full lg:px-20 z-10`} data-aos="fade-down">
-      <header className="flex justify-between items-center max-w-(--max-w) w-full px-5 md:px-0 py-5 text-(--text-color) relative">
+    <div className={`flex justify-center pt-5 md:pt-10 to-95% fixed w-full px-4 lg:px-20 z-10`} data-aos="fade-down">
+      <header className="flex justify-between items-center max-w-(--max-w) w-full px-5 py-2 md:py-4 text-(--text-color) relative bg-linear-to-r from-(--bg-color) from-10% via-(--bg-color2) via-70% to-(--bg-color3) md:px-10 rounded-full shadow-[0px_0px_30px_1px]">
         <Link to={'/'} className={`${Styles.logo} uppercase text-2xl md:text-3xl text-shadow-lg/30 hover:scale-105 transition-all`}><span className="text-4xl font-sans italic md:text-5xl">D</span>ripmatch</Link>
 
-        <div className="hidden md:block border border-slate-700 rounded-full px-6 py-7">
+        <div className="hidden md:block border border-slate-700 rounded-full px-4 py-4">
           <ul className={`${Styles.nav_list} flex gap-5`}>
             <li><Link to={'/'} onClick={() => setIsActive('')} className={`${isActive === '' && `${Styles.isActive}`}`}>Home</Link></li>
 
@@ -60,7 +60,7 @@ function Header() {
 
         {
           menuOpen && (
-            <div className="absolute md:hidden bg-(--bg-color) h-screen left-0 top-full w-full z-50">
+            <div className="absolute md:hidden bg-(--bg-color) h-screen left-0 top-full w-full z-50 mt-5">
               <ul className={`p-5 flex flex-col gap-15`}>
                 <Link to={'/'} onClick={() => setMenuOpen(false)}>Home</Link>
                 <Link to={'/lab'} onClick={() => setMenuOpen(false)}>Laboratory</Link>
