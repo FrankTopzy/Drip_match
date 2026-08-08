@@ -9,6 +9,7 @@ import Laboratory from "./pages/lab/Laboratory";
 import Setting from "./pages/settings/Setting";
 import Draft from "./pages/drafts/Draft";
 import Guide from "./pages/guide/Guide";
+import Favorite from "./pages/favorites/Favorite";
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
      <Routes>
       <Route path="/" element={<Homepage/>}/>
       <Route path="/lab" element={<Laboratory/>}/>
+      <Route path="/favorites" element={<Favorite/>}/>
       <Route path="/guide" element={<Guide/>}/>
       <Route path="/drafts" element={<Draft/>}/>
       <Route path="/settings" element={<Setting/>}/>
