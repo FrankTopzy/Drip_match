@@ -6,7 +6,7 @@ import { FaArrowRight, FaLink } from 'react-icons/fa6'
 function Homepage() {
   return (
     <div className="min-h-screen xl:min-h-250 bg-radial-[at_50%_70%] from-black/70 via-(--bg-color3) to-(--bg-color) to-90% flex justify-center lg:px-20 overflow-hidden">
-      <section className={`text-(--text-color) uppercase relative flex justify-between max-w-(--max-w) w-full pt-20`}>
+      <section className={`text-(--text-color) uppercase relative flex justify-between max-w-(--max-w) w-full pt-24`}>
         <div className="flex flex-col justify-between py-15 xl:py-15">
           <p className='font-semibold text-4xl md:text-6xl px-5 md:px-0 text-center md:text-left md:w-50'
             data-aos="fade-right"
@@ -38,7 +38,7 @@ function Homepage() {
         </div>
 
         <div className='opacity-0 md:opacity-100 absolute right-[30%] bottom-0 -z-1 md:z-1'>
-          <img src={heroPic1} alt="" className='lg:w-130 xl:w-150' data-aos='zoom-in-up'/>
+          <img src={heroPic1} alt="" className='lg:w-130 xl:w-145' data-aos='flip-left'/>
         </div>
 
         <div className='hidden md:flex flex-col md:justify-end pb-5'>
