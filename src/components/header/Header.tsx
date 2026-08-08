@@ -1,16 +1,32 @@
 import { FaMoon, FaSun } from "react-icons/fa6"
 import { useDripmatch } from "../Context";
 import Styles from './header.module.css'
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-type IsActiveType = 'home' | 'lab' | 'favorites' | 'drafts' | 'settings';
+type IsActiveType = '' | 'lab' | 'favorites' | 'drafts' | 'settings';
 
 function Header() {
-  const { isDark, setIsDark } = useDripmatch();
-  const [menuOpen, setMenuOpen] = useState<boolean>(false);
-  const [isActive, setIsActive] = useState<IsActiveType>('home')
+  const { isDark, setIsDark, menuOpen, setMenuOpen } = useDripmatch();
+  const [isActive, setIsActive] = useState<IsActiveType>('')
+  const location = useLocation();
   
+  useEffect(() => {
+    const path = location.pathname.slice(1);
+
+    if (
+      path === '' ||
+      path === 'lab' ||
+      path === 'favorites' ||
+      path === 'drafts' ||
+      path === 'settings'
+    ) {
+      setIsActive(path);
+    }
+
+    //console.log(path);
+  }, [location.pathname]);
+
 
   return (
     <div className={`flex justify-center bg-linear-to-r from-(--bg-color) from-10% via-(--bg-color2) via-70% to-(--bg-color3) to-95% fixed w-full lg:px-20 z-10`} data-aos="fade-down">
@@ -19,7 +35,7 @@ function Header() {
 
         <div className="hidden md:block border border-slate-700 rounded-full px-6 py-7">
           <ul className={`${Styles.nav_list} flex gap-5`}>
-            <li><Link to={'/'} onClick={() => setIsActive('home')} className={`${isActive === 'home' && `${Styles.isActive}`}`}>Home</Link></li>
+            <li><Link to={'/home'} onClick={() => setIsActive('')} className={`${isActive === '' && `${Styles.isActive}`}`}>Home</Link></li>
 
             <li><Link to={'/lab'} onClick={() => setIsActive('lab')} className={`${isActive === 'lab' && `${Styles.isActive}`}`}>Laboratory</Link></li>
 
