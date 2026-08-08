@@ -12,7 +12,8 @@ import Guide from "./pages/guide/Guide";
 
 
 function App() {
-  const { isDark } = useDripmatch();
+  const { isDark, menuOpen, setMenuOpen } = useDripmatch();
+
   useEffect(() => {
     AOS.init({
       duration: 1000,     // animation duration
@@ -20,9 +21,31 @@ function App() {
       offset: 100,       // offset (px) from original trigger point
     });
   }, []);
+  
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [menuOpen]);
+  
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
-    <div className={isDark ? '' : 'light-mode'}>
+    <div className={`${isDark ? '' : 'light-mode'}`}>
      <Header/>
      <Routes>
       <Route path="/" element={<Homepage/>}/>
