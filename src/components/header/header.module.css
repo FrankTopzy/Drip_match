@@ -5,25 +5,29 @@
 }
 
 .nav_list li a {
-  position: relative;
-  display: inline-block;
-  padding: 10px 20px;
-  overflow: hidden;
+  padding: 10px 25px;
   cursor: pointer;
-}
-
-.nav_list a::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: var(--text-color);
-  transform: scaleX(0); /* Hidden by default */
-  transition: transform 0.3s ease;
+  border-radius: 20px;
 }
 
 .nav_list a:hover::before{
   transform: scaleX(1);
+}
+
+.nav_list li a:hover {
+  background-color: var(--nav-list-bg);
+  color: var(--bg-color);
+  border-radius: 20px;
+  transition: all 0.3s;
+  transform: scale();
+  box-shadow: 0px 0px 30px 7px (--text-color);
+}
+
+.isActive {
+  color: var(--text-color);
+  border: 1px solid var(--nav-list-bg);
+  border-radius: 20px;
+  transition: all 0.3s;
+  transform: scale();
+  box-shadow: 0px 0px 30px 7px (--text-color);
 }
