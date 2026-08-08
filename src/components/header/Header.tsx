@@ -30,7 +30,7 @@ function Header() {
 
   return (
     <div className={`flex justify-center pt-5 md:pt-10 to-95% fixed w-full px-4 lg:px-20 z-10`} data-aos="fade-down">
-      <header className="flex justify-between items-center max-w-(--max-w) w-full px-5 py-2 md:py-4 text-(--text-color) relative bg-linear-to-r from-(--bg-color) from-10% via-(--bg-color2) via-70% to-(--bg-color3) md:px-10 rounded-full shadow-[0px_0px_30px_1px]">
+      <header className="flex justify-between items-center max-w-(--max-w) w-full px-5 py-2 md:py-4 text-(--text-color) relative bg-(--navbg-color) md:px-10 rounded-full backdrop-blur-xl border border-(--text-color)/20">
         <Link to={'/'} className={`${Styles.logo} uppercase text-2xl md:text-3xl text-shadow-lg/30 hover:scale-105 transition-all`}><span className="text-4xl font-sans italic md:text-5xl">D</span>ripmatch</Link>
 
         <div className="hidden md:block border border-slate-700 rounded-full px-4 py-4">
