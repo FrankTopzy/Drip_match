@@ -35,7 +35,7 @@ function Header() {
 
         <div className="hidden md:block border border-slate-700 rounded-full px-6 py-7">
           <ul className={`${Styles.nav_list} flex gap-5`}>
-            <li><Link to={'/home'} onClick={() => setIsActive('')} className={`${isActive === '' && `${Styles.isActive}`}`}>Home</Link></li>
+            <li><Link to={'/'} onClick={() => setIsActive('')} className={`${isActive === '' && `${Styles.isActive}`}`}>Home</Link></li>
 
             <li><Link to={'/lab'} onClick={() => setIsActive('lab')} className={`${isActive === 'lab' && `${Styles.isActive}`}`}>Laboratory</Link></li>
 
