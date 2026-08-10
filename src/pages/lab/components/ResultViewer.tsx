@@ -1,18 +1,46 @@
 import { useState, useRef, useCallback } from 'react';
-import { motion } from 'framer-motion';
-import { FaDownload, FaRedoAlt, FaArrowsAltH } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaDownload, FaRedoAlt, FaArrowsAltH, FaHeart, FaRegHeart, FaCheck } from 'react-icons/fa';
+import { useDripmatch } from '../../../components/Context';
+import type { SavedResult } from '../../../components/types';
 
 interface ResultViewerProps {
   originalPhotoUrl: string;
   resultImageUrl: string;
   garmentName: string;
+  garmentCategory?: string;
+  garmentPrice?: string;
+  garmentImageUrl?: string;
   onTryAnother: () => void;
 }
 
-export default function ResultViewer({originalPhotoUrl, resultImageUrl, garmentName, onTryAnother,}: ResultViewerProps) {
+export default function ResultViewer({
+  originalPhotoUrl,
+  resultImageUrl,
+  garmentName,
+  garmentCategory = '',
+  garmentPrice = '',
+  garmentImageUrl = '',
+  onTryAnother,
+}: ResultViewerProps) {
   const [sliderPosition, setSliderPosition] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
   const isDraggingRef = useRef(false);
+  const [isFavorited, setIsFavorited] = useState(false);
+  const [showFavConfirm, setShowFavConfirm] = useState(false);
+
+  const { addFavorite, addDraft } = useDripmatch();
+
+  const buildSavedResult = useCallback((): SavedResult => ({
+    id: `result-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    resultImageUrl,
+    originalPhotoUrl,
+    garmentName,
+    garmentCategory,
+    garmentPrice,
+    garmentImageUrl,
+    savedAt: Date.now(),
+  }), [resultImageUrl, originalPhotoUrl, garmentName, garmentCategory, garmentPrice, garmentImageUrl]);
 
   const updateSlider = useCallback((clientX: number) => {
     if (!containerRef.current) return;
@@ -61,6 +89,23 @@ export default function ResultViewer({originalPhotoUrl, resultImageUrl, garmentN
       window.open(resultImageUrl, '_blank');
     }
   }, [resultImageUrl, garmentName]);
+
+  const handleAddToFavorites = useCallback(() => {
+    const saved = buildSavedResult();
+    addFavorite(saved);
+    setIsFavorited(true);
+    setShowFavConfirm(true);
+    setTimeout(() => setShowFavConfirm(false), 2000);
+  }, [addFavorite, buildSavedResult]);
+
+  const handleTryAnother = useCallback(() => {
+    // If not favorited, auto-save to drafts
+    if (!isFavorited) {
+      const saved = buildSavedResult();
+      addDraft(saved);
+    }
+    onTryAnother();
+  }, [isFavorited, buildSavedResult, addDraft, onTryAnother]);
 
   return (
     <motion.div
@@ -115,15 +160,42 @@ export default function ResultViewer({originalPhotoUrl, resultImageUrl, garmentN
         </div>
       </div>
 
+      {/* Favorite confirmation toast */}
+      <AnimatePresence>
+        {showFavConfirm && (
+          <motion.div
+            className="fav-toast"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+          >
+            <FaCheck /> Added to Favorites!
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Action buttons */}
       <div className="result-actions">
+        <button
+          className={`result-btn ${isFavorited ? 'result-btn--favorited' : 'result-btn--favorite'}`}
+          onClick={handleAddToFavorites}
+          disabled={isFavorited}
+        >
+          {isFavorited ? <><FaHeart /> Favorited</> : <><FaRegHeart /> Add to Favorites</>}
+        </button>
         <button className="result-btn result-btn--download" onClick={handleDownload}>
           <FaDownload /> Save Result
         </button>
-        <button className="result-btn result-btn--retry" onClick={onTryAnother}>
+        <button className="result-btn result-btn--retry" onClick={handleTryAnother}>
           <FaRedoAlt /> Try Another
         </button>
       </div>
+
+      {!isFavorited && (
+        <p className="draft-hint">
+          💡 Clicking "Try Another" without adding to favorites will save this result to your Drafts.
+        </p>
+      )}
     </motion.div>
   );
 }
