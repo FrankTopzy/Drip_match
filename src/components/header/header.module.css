@@ -5,13 +5,10 @@
 }
 
 .nav_list li a {
-  padding: 6px 25px;
+  padding: 3px 25px;
   cursor: pointer;
   border-radius: 20px;
-}
-
-.nav_list a:hover::before{
-  transform: scaleX(1);
+  font-size: 14px;
 }
 
 .nav_list li a:hover {
@@ -19,7 +16,6 @@
   color: var(--bg-color);
   border-radius: 20px;
   transition: all 0.3s;
-  transform: scale();
   box-shadow: 0px 0px 30px 7px (--text-color);
 }
 
@@ -30,4 +26,16 @@
   transition: all 0.3s;
   transform: scale();
   box-shadow: 0px 0px 30px 7px (--text-color);
+}
+
+@media (max-width: 1280px) {
+  .nav_list li a {
+    padding: 3px 10px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .nav_list li a {
+    font-size: 13px;
+  }
 }
