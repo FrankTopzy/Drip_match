@@ -5,10 +5,10 @@ import { FaArrowRight, FaLink } from 'react-icons/fa6'
 
 function Homepage() {
   return (
-    <div className="min-h-screen xl:min-h-250 bg-radial-[at_50%_70%] from-black/70 via-(--bg-color3) to-(--bg-color) to-90% flex justify-center lg:px-20 overflow-hidden">
-      <section className={`text-(--text-color) uppercase relative flex justify-between max-w-(--max-w) w-full pt-13 md:pt-30`}>
+    <div className="min-h-screen xl:min-h-250 bg-radial-[at_50%_70%] from-black/70 via-(--bg-color3) to-(--bg-color) to-90% flex justify-center md:px-5 lg:px-20 overflow-hidden">
+      <section className={`text-(--text-color) uppercase relative flex justify-between max-w-(--max-w) w-full pt-13 md:pt-20`}>
         <div className="flex flex-col justify-between py-15 xl:py-15">
-          <p className='font-semibold text-4xl md:text-6xl px-5 md:px-0 text-center md:text-left md:w-50'
+          <p className='font-semibold text-4xl lg:text-5xl xl:text-6xl px-5 md:px-0 text-center md:text-left md:w-50'
             data-aos="fade-right"
             data-aos-anchor="#example-anchor"
             data-aos-offset="500"
@@ -29,7 +29,7 @@ function Homepage() {
             </div>
           </div>
           
-          <div className='text-center md:text-left'>
+          <div className='text-center md:text-left relative z-2'>
             <p className='normal-case md:w-110 px-5 md:px-0' >Try outfits on instantly and see how clothes look on you before you buy with our AI-powered virtual try-on experience.</p>
             <Link to="/lab" className="bg-red-800 px-4 py-2 mt-5 text-white uppercase inline-flex items-center gap-2 group">
               Go to Lab <FaArrowRight className='group-hover:translate-x-1 transition-all'/>
@@ -37,13 +37,13 @@ function Homepage() {
           </div>
         </div>
 
-        <div className='opacity-0 md:opacity-100 absolute right-[30%] bottom-0 -z-1 md:z-1'>
-          <img src={heroPic1} alt="" className='lg:w-130 xl:w-145' data-aos='flip-left'/>
+        <div className='hidden md:block absolute right-[25%] xl:right-[30%] bottom-0 -z-1 md:z-1'>
+          <img src={heroPic1} alt="" className='lg:w-100 xl:w-145 ' data-aos='flip-left'/>
         </div>
 
         <div className='hidden md:flex flex-col md:justify-end pb-5'>
           <p data-aos="fade-left"
-          className='font-semibold text-3xl md:text-6xl mb-5'
+          className='font-semibold text-4xl lg:text-5xl xl:text-6xl mb-5'
             data-aos-anchor="#example-anchor"
             data-aos-offset="500"
             data-aos-duration="500">Made <br/> seamless
