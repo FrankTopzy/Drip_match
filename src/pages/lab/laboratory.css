@@ -871,3 +871,49 @@
     flex-direction: column;
   }
 }
+
+/* ─── Favorite Button & Toast ──────────────────────── */
+.result-btn--favorite {
+  background: linear-gradient(135deg, #be185d, #ec4899);
+  color: white;
+}
+
+.result-btn--favorite:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(190, 24, 93, 0.4);
+}
+
+.result-btn--favorited {
+  background: rgba(190, 24, 93, 0.15);
+  border: 1px solid rgba(236, 72, 153, 0.3);
+  color: #ec4899;
+  cursor: default;
+}
+
+.result-btn--favorited:disabled {
+  opacity: 0.8;
+}
+
+.fav-toast {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  margin: 0.75rem auto;
+  background: linear-gradient(135deg, rgba(190, 24, 93, 0.15), rgba(236, 72, 153, 0.1));
+  border: 1px solid rgba(236, 72, 153, 0.3);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #ec4899;
+  width: fit-content;
+}
+
+.draft-hint {
+  text-align: center;
+  font-size: 0.7rem;
+  opacity: 0.45;
+  margin-top: 0.75rem;
+  line-height: 1.4;
+}
