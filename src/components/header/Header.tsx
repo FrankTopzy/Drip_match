@@ -29,12 +29,12 @@ function Header() {
 
 
   return (
-    <div className={`flex justify-center pt-5 md:pt-10 to-95% fixed w-full px-4 lg:px-20 z-10`} data-aos="fade-down">
-      <header className="flex justify-between items-center max-w-(--max-w) w-full px-5 py-2 md:py-4 text-(--text-color) relative bg-(--navbg-color) md:px-10 rounded-full backdrop-blur-xl border border-(--text-color)/20">
-        <Link to={'/'} className={`${Styles.logo} uppercase text-2xl md:text-3xl text-shadow-lg/30 hover:scale-105 transition-all`}><span className="text-4xl font-sans italic md:text-5xl">D</span>ripmatch</Link>
+    <div className={`flex justify-center pt-5 to-95% fixed w-full px-4 lg:px-20 z-10`} data-aos="fade-down">
+      <header className="flex justify-between items-center max-w-(--max-w) w-full px-5 lg:px-9 py-2 text-(--text-color) relative bg-(--navbg-color) rounded-full backdrop-blur-xl border border-(--text-color)/20">
+        <Link to={'/'} className={`${Styles.logo} uppercase text-2xl xl:text-3xl text-shadow-lg/30 hover:scale-105 transition-all`}><span className="text-4xl lg:text-5xl font-sans italic">D</span>ripmatch</Link>
 
-        <div className="hidden md:block border border-slate-700 rounded-full px-4 py-4">
-          <ul className={`${Styles.nav_list} flex gap-5`}>
+        <div className="hidden md:block border border-slate-700 rounded-full px-3 py-3">
+          <ul className={`${Styles.nav_list} flex gap-3 xl:gap-5`}>
             <li><Link to={'/'} onClick={() => setIsActive('')} className={`${isActive === '' && `${Styles.isActive}`}`}>Home</Link></li>
 
             <li><Link to={'/lab'} onClick={() => setIsActive('lab')} className={`${isActive === 'lab' && `${Styles.isActive}`}`}>Laboratory</Link></li>
