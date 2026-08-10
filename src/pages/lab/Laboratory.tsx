@@ -177,6 +177,9 @@ function Laboratory() {
                 originalPhotoUrl={referencePhotoUrl}
                 resultImageUrl={result.resultImageUrl}
                 garmentName={selectedGarment?.name ?? 'garment'}
+                garmentCategory={selectedGarment?.category ?? ''}
+                garmentPrice={selectedGarment?.price ?? ''}
+                garmentImageUrl={selectedGarment?.imageUrl ?? ''}
                 onTryAnother={handleTryAnother}
               />
             ) : (
