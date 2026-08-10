@@ -7,7 +7,7 @@
   min-height: 100vh;
   background: var(--bg-color);
   color: var(--text-color);
-  padding: 10.5rem 1.5rem 3rem;
+  padding: 7.5rem 1.5rem 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,7 +40,6 @@
 
 .lab-subtitle {
   font-size: 0.95rem;
-  opacity: 0.6;
   line-height: 1.5;
 }
 
@@ -780,7 +779,7 @@
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  opacity: 0.35;
+  opacity: 0.5;
   transition: opacity 0.3s ease;
 }
 
@@ -852,10 +851,13 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 1024px) {
   .lab-page {
-    padding: 7.5rem 1rem 2rem;
+    padding: 6.7rem 1rem 2rem;
   }
+}
+
+@media (max-width: 768px) {
 
   .lab-title {
     font-size: 1.75rem;

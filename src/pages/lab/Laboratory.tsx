@@ -117,7 +117,7 @@ function Laboratory() {
         <motion.p
           className="lab-subtitle"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.6 }}
+          animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.6 }}
         >
           See how clothes look on you before you buy. Select a garment, upload your photo, and let AI do the rest.
