@@ -18,18 +18,18 @@ export interface Garment {
 export const garments: Garment[] = [
   {
     id: 'g1',
-    name: 'Classic White Tee',
-    category: 'upper_body',
+    name: 'Custom Man United Jersey',
+    category: 'full_body',
     imageUrl: 'https://drip-match.vercel.app/garments/testFit6.jpg',
-    description: 'A clean, minimalist white t-shirt for everyday wear.',
+    description: 'A clean, minimalist jersey for everyday wear.',
     price: '$29.99',
   },
   {
     id: 'g2',
-    name: 'Denim Jacket',
+    name: 'Polo Shirt',
     category: 'upper_body',
     imageUrl: 'https://drip-match.vercel.app/garments/testFit1.jpg',
-    description: 'Rugged denim jacket with a modern slim fit.',
+    description: 'Classic polo shirt for a smart casual look.',
     price: '$89.99',
   },
   {
@@ -42,18 +42,18 @@ export const garments: Garment[] = [
   },
   {
     id: 'g4',
-    name: 'Floral Blouse',
+    name: 'Classic Dress Shirt with inner',
     category: 'upper_body',
     imageUrl: 'https://drip-match.vercel.app/garments/testFit3.jpg',
-    description: 'Elegant floral blouse with a relaxed silhouette.',
+    description: 'Elegant dress shirt for a formal look.',
     price: '$49.99',
   },
   {
     id: 'g5',
-    name: 'Graphic Hoodie',
-    category: 'upper_body',
+    name: 'Brown & white shirt with inner',
+    category: 'full_body',
     imageUrl: 'https://drip-match.vercel.app/garments/testFit4.jpg',
-    description: 'Oversized graphic hoodie for streetwear looks.',
+    description: 'Brown & white shirt with inner.',
     price: '$59.99',
   },
   {
