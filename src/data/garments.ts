@@ -65,20 +65,3 @@ export const garments: Garment[] = [
     price: '$44.99',
   },
 ];
-
-/**
- * Sample reference / model photos.
- * Users can also upload their own.
- */
-export const sampleReferencePhotos = [
-  {
-    id: 'ref1',
-    label: 'Model — Full Body',
-    url: 'https://plugins-media.makeupar.com/strapi/assets/clothes_reference_full_body_01_8190f45a28.png',
-  },
-  {
-    id: 'ref2',
-    label: 'Model — Half Body',
-    url: 'https://plugins-media.makeupar.com/strapi/assets/clothes_reference_half_body_01_61a1c9b8a0.png',
-  },
-];
