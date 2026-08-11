@@ -126,7 +126,7 @@ function Favorite() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          {favorites.map((item, index) => (
+          {favorites.map((item: any, index: number) => (
             <motion.div
               key={item.id}
               className="fav-card"
