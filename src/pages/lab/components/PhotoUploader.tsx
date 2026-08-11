@@ -1,7 +1,6 @@
 import { useState, useRef, useCallback } from 'react';
 import { FaCloudUploadAlt, FaTrash } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
-import { sampleReferencePhotos } from '../../../data/garments';
 
 interface PhotoUploaderProps {
   onPhotoSelect: (url: string, file?: File) => void;
@@ -93,24 +92,6 @@ export default function PhotoUploader({onPhotoSelect, selectedPhotoUrl, onClear}
                 onChange={handleInputChange}
                 className="hidden-input"
               />
-            </div>
-
-            {/* Sample reference photos */}
-            <div className="sample-refs">
-              <p className="sample-refs-label">Or try a sample:</p>
-              <div className="sample-refs-grid">
-                {sampleReferencePhotos.map((ref) => (
-                  <button
-                    key={ref.id}
-                    className="sample-ref-btn"
-                    onClick={() => onPhotoSelect(ref.url)}
-                    title={ref.label}
-                  >
-                    <img src={ref.url} alt={ref.label} />
-                    <span>{ref.label}</span>
-                  </button>
-                ))}
-              </div>
             </div>
           </motion.div>
         )}
