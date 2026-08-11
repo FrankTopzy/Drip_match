@@ -126,7 +126,7 @@ function Draft() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          {drafts.map((item, index) => (
+          {drafts.map((item: any, index:number) => (
             <motion.div
               key={item.id}
               className="draft-card"
