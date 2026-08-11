@@ -16,9 +16,9 @@ function Setting() {
     setAutoSaveDrafts,
   } = useDripmatch();
 
-  const [showClearFavConfirm, setShowClearFavConfirm] = useState(false);
-  const [showClearDraftConfirm, setShowClearDraftConfirm] = useState(false);
-  const [showClearAllConfirm, setShowClearAllConfirm] = useState(false);
+  const [showClearFavConfirm, setShowClearFavConfirm] = useState<boolean>(false);
+  const [showClearDraftConfirm, setShowClearDraftConfirm] = useState<boolean>(false);
+  const [showClearAllConfirm, setShowClearAllConfirm] = useState<boolean>(false);
 
   const handleClearAll = () => {
     clearFavorites();
