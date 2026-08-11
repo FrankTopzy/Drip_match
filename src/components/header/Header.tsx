@@ -29,7 +29,7 @@ function Header() {
 
 
   return (
-    <div className={`flex justify-center pt-5 to-95% fixed w-full px-4 lg:px-20 z-10`} data-aos="fade-down">
+    <div className={`flex justify-center pt-5 to-95% fixed w-full px-4 lg:px-20 z-99`} data-aos="fade-down">
       <header className="flex justify-between items-center max-w-(--max-w) w-full px-5 lg:px-9 py-2 text-(--text-color) relative bg-(--navbg-color) rounded-full backdrop-blur-xl border border-(--text-color)/20">
         <Link to={'/'} className={`${Styles.logo} uppercase text-2xl xl:text-3xl text-shadow-lg/30 hover:scale-105 transition-all`}><span className="text-4xl lg:text-5xl font-sans italic">D</span>ripmatch</Link>
 
