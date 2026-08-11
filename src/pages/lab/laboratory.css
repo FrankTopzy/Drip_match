@@ -920,7 +920,6 @@
 
 /* ─── Garment Upload Tile ─────────────────────────────── */
 .garment-upload-tile {
-  aspect-ratio: 3 / 4;
   border: 2px dashed rgba(155, 28, 28, 0.45);
   border-radius: 0.75rem;
   display: flex;
