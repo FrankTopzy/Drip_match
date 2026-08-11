@@ -76,7 +76,7 @@ export const DripmatchContextProvider = ({children}: DripmatchContextPropType) =
   const addDraft = useCallback((item: SavedResult) => {
     if (!autoSaveDrafts) return;
     setDrafts(prev => {
-      if (prev.some(d => d.id === item.id)) return prev;
+      if (prev.some(draft => draft.id === item.id)) return prev;
       return [item, ...prev];
     });
   }, [autoSaveDrafts]);
