@@ -52,6 +52,73 @@
   flex: 1;
 }
 
+/* ─── Step indicators ───────────────────────────────── */
+.steps-indicator {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.step-dot {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.step-dot--active {
+  opacity: 1;
+}
+
+.step-dot--done {
+  opacity: 0.7;
+}
+
+.step-number {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+}
+
+.light-mode .step-number {
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.step-dot--active .step-number {
+  background: #9b1c1c;
+  border-color: #9b1c1c;
+  color: white;
+}
+
+.step-dot--done .step-number {
+  background: rgba(155, 28, 28, 0.3);
+  border-color: rgba(155, 28, 28, 0.5);
+  color: white;
+}
+
+.step-connector {
+  width: 2rem;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  align-self: center;
+}
+
+.light-mode .step-connector {
+  background: rgba(0, 0, 0, 0.1);
+}
+
 /* ─── Glass Panels ──────────────────────────────────── */
 .glass-panel {
   background: rgba(255, 255, 255, 0.04);
@@ -762,73 +829,6 @@
 .error-banner-icon {
   font-size: 1rem;
   flex-shrink: 0;
-}
-
-/* ─── Step indicators ───────────────────────────────── */
-.steps-indicator {
-  display: flex;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-bottom: 2rem;
-}
-
-.step-dot {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  opacity: 0.5;
-  transition: opacity 0.3s ease;
-}
-
-.step-dot--active {
-  opacity: 1;
-}
-
-.step-dot--done {
-  opacity: 0.7;
-}
-
-.step-number {
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 0.65rem;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  transition: all 0.3s ease;
-}
-
-.light-mode .step-number {
-  border-color: rgba(0, 0, 0, 0.15);
-}
-
-.step-dot--active .step-number {
-  background: #9b1c1c;
-  border-color: #9b1c1c;
-  color: white;
-}
-
-.step-dot--done .step-number {
-  background: rgba(155, 28, 28, 0.3);
-  border-color: rgba(155, 28, 28, 0.5);
-  color: white;
-}
-
-.step-connector {
-  width: 2rem;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.1);
-  align-self: center;
-}
-
-.light-mode .step-connector {
-  background: rgba(0, 0, 0, 0.1);
 }
 
 /* ─── Responsive ────────────────────────────────────── */
