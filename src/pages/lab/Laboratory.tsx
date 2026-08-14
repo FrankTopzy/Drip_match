@@ -9,18 +9,33 @@ import { tryOnWithUrls, uploadFile, startTryOnTaskWithUploadedUser, pollTaskResu
 import type { Garment } from '../../data/garments';
 import type { TryOnResult } from '../../services/youCamService';
 import './laboratory.css';
+import type { IconType } from 'react-icons';
 
 type LabStep = 'select' | 'processing' | 'result';
+
+type Steps = {
+ label: string;
+ icon: IconType;
+};
 
 function Laboratory() {
   // State
   const [selectedGarment, setSelectedGarment] = useState<Garment | null>(null);
   const [referencePhotoUrl, setReferencePhotoUrl] = useState<string | null>(null);
+  const [result, setResult] = useState<TryOnResult | null>(null); 
   const [referenceFile, setReferenceFile] = useState<File | null>(null);
   const [step, setStep] = useState<LabStep>('select');
   const [statusMessage, setStatusMessage] = useState('');
   const [error, setError] = useState<string | null>(null);
-  const [result, setResult] = useState<TryOnResult | null>(null);
+  
+
+  const steps: Steps[] = [
+                  { label: 'Choose Garment', icon: FaTshirt },
+                  { label: 'Upload Photo', icon: FaCamera },
+                  { label: 'See Result', icon: FaMagic },
+                ];
+
+  const activeStep = step === 'result' ? 3 : referencePhotoUrl ? 2 : selectedGarment ? 1 : 0;
 
   // Photo selection handler
   const handlePhotoSelect = useCallback((url: string, file?: File) => {
@@ -32,7 +47,7 @@ function Laboratory() {
   const handlePhotoClear = useCallback(() => {
     setReferencePhotoUrl(null);
     setReferenceFile(null);
-  }, []);
+  }, []); 
 
   const handleGarmentSelect = useCallback((garment: Garment) => {
     setSelectedGarment(garment);
@@ -97,7 +112,6 @@ function Laboratory() {
   }, []);
 
   // Determine active step for indicator
-  const activeStep = step === 'result' ? 3 : referencePhotoUrl ? 2 : selectedGarment ? 1 : 0;
 
   const canTryOn = selectedGarment && referencePhotoUrl && step === 'select';
 
@@ -126,11 +140,7 @@ function Laboratory() {
 
       {/* Step indicator */}
       <div className="steps-indicator">
-        {[
-          { label: 'Choose Garment', icon: FaTshirt },
-          { label: 'Upload Photo', icon: FaCamera },
-          { label: 'See Result', icon: FaMagic },
-        ].map((s, i) => (
+        {steps.map((s, i) => (
           <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <div className={`step-dot ${activeStep >= i + 1 ? (activeStep > i + 1 ? 'step-dot--done' : 'step-dot--active') : ''}`}>
               <div className="step-number">
