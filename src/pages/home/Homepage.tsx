@@ -19,7 +19,7 @@ function Homepage() {
           <div className='md:hidden group w-80 p-1 bg-(--bg-color2) self-center my-5' data-aos="flip-left">
             <div className='relative'>
               <div className='absolute bg-black/80 w-full h-0 justify-center items-center translate-y-full opacity-0 flex group-hover:translate-y-0 group-hover:opacity-100 transition-all group-hover:h-full'>
-                <Link to={'/guide'} className='hover:underline'> 
+                <Link to={'/lab'} className='hover:underline'> 
                   <FaLink className='text-red-800 flex items-center w-full'/> 
                   <p className='normal-case text-[10px]'>Try Cloth</p>
                 </Link>
@@ -38,7 +38,7 @@ function Homepage() {
         </div>
 
         <div className='hidden md:block absolute right-[25%] xl:right-[30%] bottom-0 -z-1 md:z-1'>
-          <img src={heroPic1} alt="" className='lg:w-100 xl:w-145 ' data-aos='flip-left'/>
+          <img src={heroPic1} alt="" className='lg:w-100 xl:w-145 '/>
         </div>
 
         <div className='hidden md:flex flex-col md:justify-end pb-5'>
@@ -52,7 +52,7 @@ function Homepage() {
           <div className='group w-50 p-2 bg-(--bg-color2) self-end' data-aos="zoom-in-left">
             <div className='relative'>
               <div className='absolute bg-black/80 w-full h-0 justify-center items-center translate-y-full opacity-0 flex group-hover:translate-y-0 group-hover:opacity-100 transition-all group-hover:h-full'>
-                <Link to={'/guide'} className='hover:underline'> 
+                <Link to={'/lab'} className='hover:underline'> 
                   <FaLink className='text-red-800 flex items-center w-full'/> 
                   <p className='normal-case text-[10px]'>Try Cloth</p>
                 </Link>
