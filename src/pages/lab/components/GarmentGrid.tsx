@@ -23,6 +23,7 @@ const categories: Category[] = [
 
 const CUSTOM_GARMENT_ID = 'custom-upload';
 
+
 export default function GarmentGrid({selectedGarment, onSelect}: GarmentGridProps) {
   const [activeCategory, setActiveCategory] = useState<GarmentCategoryFilter>('all');
   const [customGarment, setCustomGarment] = useState<Garment | null>(null);
@@ -46,11 +47,13 @@ export default function GarmentGrid({selectedGarment, onSelect}: GarmentGridProp
     onSelect(custom);
   }, [onSelect]);
 
+
   const handleFileInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) handleCustomFile(file);
     e.target.value = '';
   }, [handleCustomFile]);
+
 
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -59,12 +62,14 @@ export default function GarmentGrid({selectedGarment, onSelect}: GarmentGridProp
     if (file) handleCustomFile(file);
   }, [handleCustomFile]);
 
+
   const handleRemoveCustom = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     if (customGarment) URL.revokeObjectURL(customGarment.imageUrl);
     setCustomGarment(null);
     if (selectedGarment?.id === CUSTOM_GARMENT_ID) {
       // deselect — parent expects a Garment; pass first catalogued garment as fallback
+      onSelect(garments[0]);
     }
   }, [customGarment, selectedGarment]);
 
@@ -116,20 +121,23 @@ export default function GarmentGrid({selectedGarment, onSelect}: GarmentGridProp
                   ✓
                 </motion.div>
               )}
-              <button
+              <p
                 className="garment-custom-remove"
                 onClick={handleRemoveCustom}
                 title="Remove"
               >
                 <FaTimes />
-              </button>
+              </p>
             </motion.button>
           ) : (
             <motion.div
               key="custom-upload"
               className={`garment-upload-tile ${isDragOver ? 'garment-upload-tile--dragover' : ''}`}
               onClick={() => fileInputRef.current?.click()}
-              onDragOver={(e) => { e.preventDefault(); setIsDragOver(true); }}
+              onDragOver={(e) => { 
+                                  e.preventDefault(); 
+                                  setIsDragOver(true);
+                                 }}
               onDragLeave={() => setIsDragOver(false)}
               onDrop={handleDrop}
               initial={{ opacity: 0, y: 20 }}
