@@ -79,35 +79,6 @@ export async function startTryOnTask(garmentUrl: string, referenceUrl: string, c
 
 
 // ─── File Upload Flow ───────────────────────────────────────────────────
-/*export async function uploadGarmentFromUrl(garmentUrl: string): Promise<string> {
-
-  console.log("Loading garment:", garmentUrl);
-
-  const response = await fetch(garmentUrl);
-
-  if (!response.ok) {
-    throw new Error("Couldn't load garment image.");
-  }
-
-  const blob = await response.blob();
-
-  const file = new File(
-    [blob],
-    garmentUrl.split("/").pop() || "garment.jpg",
-    {
-      type: blob.type || "image/jpeg",
-    }
-  );
-
-  console.log(file);
-
-  const garmentFileId = await uploadFile(file);
-
-  console.log("Garment File ID:", garmentFileId);
-
-  return garmentFileId;
-}*/
-
 /**
  * Upload a local file to YouCam's file API.
  * Returns the file_id to use in task creation.
@@ -136,10 +107,9 @@ export async function uploadFile(file: File): Promise<string> {
   }
 
   const initPayload = await initRes.json();
-  console.log("Response: " + initPayload);
   
   const uploadedFile = initPayload?.data?.files?.[0];
-
+  
   const fileId = uploadedFile?.file_id;
 
   const uploadRequest = uploadedFile?.requests?.[0];
@@ -159,8 +129,6 @@ export async function uploadFile(file: File): Promise<string> {
     headers: uploadRequest.headers,
     body: file,
   });
-
-  console.log("PutRes: " + putRes);
   
 
   if (!putRes.ok) {
@@ -184,11 +152,6 @@ export async function startTryOnTaskWithUploadedUser(userFileId: string, garment
       garment_category: category,
     }
 
-  //console.log("TASK ENDPOINT:", TASK_ENDPOINT);
-  
-  //console.log("REQUEST BODY:", body);
-
-  console.log("Garment URL:", garmentUrl);
   const res = await fetch(TASK_ENDPOINT, {
     method: 'POST',
     headers: getHeaders(),
@@ -201,12 +164,8 @@ export async function startTryOnTaskWithUploadedUser(userFileId: string, garment
   }
 
   const payload = await res.json();
-  //console.log("Task creation response:", payload);
-  //console.log("STATUS:", res.status);
-  //console.log("PAYLOAD:", payload);  
-  const taskId = payload?.data?.task_id;
-  //console.log("Polling task:", taskId);
   
+  const taskId = payload?.data?.task_id;  
 
   if (!taskId) {
     throw new Error('task_id not found: ' + JSON.stringify(payload));
@@ -217,39 +176,8 @@ export async function startTryOnTaskWithUploadedUser(userFileId: string, garment
 
 
 
-/*export async function startTryOnTaskWithFileIds(
-  garmentFileId: string,
-  userFileId: string,
-  category: GarmentCategory = "auto"
-): Promise<string> {
-
-  const body = {
-    src_file_id: garmentFileId,
-    ref_file_id: userFileId,
-    garment_category: category,
-  };
-
-  console.log(body);
-
-  const res = await fetch(TASK_ENDPOINT, {
-    method: "POST",
-    headers: getHeaders(),
-    body: JSON.stringify(body),
-  });
-
-  if (!res.ok) {
-    throw new Error(await res.text());
-  }
-
-  const payload = await res.json();
-
-  console.log(payload);
-
-  return payload.data.task_id;
-}*/
 
 // ─── Polling ────────────────────────────────────────────────────────────
-
 /**
  * Poll for the try-on task result.
  * @param taskId   The task ID returned by startTryOnTask
@@ -262,18 +190,12 @@ export async function pollTaskResult(taskId: string, options: { intervalMs?: num
   const { intervalMs = 2500, maxAttempts = 120 } = options;
 
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-    console.log(`Polling attempt ${attempt}`);
-    console.log(`GET ${TASK_ENDPOINT}/${taskId}`);
-
     const res = await fetch(`${TASK_ENDPOINT}/${taskId}`, {
       method: "GET",
       headers: getHeaders(),
     });
 
-    //console.log("HTTP Status:", res.status);
-
     const payload = await res.json();
-    //console.log("Poll Response:", payload);
 
     if (!res.ok) {
       throw new Error(JSON.stringify(payload));
@@ -281,7 +203,6 @@ export async function pollTaskResult(taskId: string, options: { intervalMs?: num
 
     const status = payload?.data?.task_status;
 
-    //console.log("Task Status:", status);
 
     if (status === "success") {
       const results = payload?.data?.results;
@@ -294,8 +215,6 @@ export async function pollTaskResult(taskId: string, options: { intervalMs?: num
         raw: payload,
       };
     }
-
-    console.log(JSON.stringify(payload, null, 2));
 
     if (status === "error") {
       throw new Error(JSON.stringify(payload.data));
