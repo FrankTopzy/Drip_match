@@ -20,11 +20,12 @@ export default function PhotoUploader({onPhotoSelect, selectedPhotoUrl, onClear}
     },
     [onPhotoSelect],
   );
-
+  
   const handleDrop = useCallback(
     (e: React.DragEvent) => {
       e.preventDefault();
       setIsDragging(false);
+      
       const file = e.dataTransfer.files[0];
       if (file) handleFile(file);
     },
