@@ -51,10 +51,9 @@ function Laboratory() {
 
   const handleGarmentSelect = useCallback((garment: Garment) => {
     setSelectedGarment(garment);
+    
     setError(null);
   }, []);
-
-
 
   // Try-On execution
   const handleTryOn = useCallback(async () => {
@@ -82,6 +81,7 @@ function Laboratory() {
         );
 
         setStatusMessage('Processing your look...');
+        
         tryOnResult = await pollTaskResult(taskId);
       } else {
         // Using a sample reference URL — direct URL flow
