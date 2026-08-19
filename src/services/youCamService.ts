@@ -55,8 +55,8 @@ export async function startTryOnTask(garmentUrl: string, referenceUrl: string, c
     method: 'POST',
     headers: getHeaders(),
     body: JSON.stringify({
-      src_file_url: garmentUrl,
-      ref_file_url: referenceUrl,
+      src_file_url: referenceUrl, // src = person (who wears the garment)
+      ref_file_url: garmentUrl,   // ref = garment (clothing item)
       garment_category: category,
     }),
   });
@@ -142,15 +142,20 @@ export async function uploadFile(file: File): Promise<string> {
 
 
 /**
- * Start a try-on task using uploaded file IDs.
+ * Start a try-on task where the person photo was uploaded (file ID)
+ * but the garment comes from a public URL.
+ * src = person, ref = garment — YouCam convention.
  */
-
-export async function startTryOnTaskWithUploadedUser(userFileId: string, garmentUrl: string, category: GarmentCategory = 'auto'): Promise<string> {
+export async function startTryOnTaskWithUploadedUser(
+  userFileId: string,
+  garmentUrl: string,
+  category: GarmentCategory = 'auto',
+): Promise<string> {
   const body = {
-      src_file_id: userFileId,
-      ref_file_url: garmentUrl ,
-      garment_category: category,
-    }
+    src_file_id: userFileId,   // src = person (uploaded file)
+    ref_file_url: garmentUrl,  // ref = garment (public URL)
+    garment_category: category,
+  };
 
   const res = await fetch(TASK_ENDPOINT, {
     method: 'POST',
@@ -164,8 +169,45 @@ export async function startTryOnTaskWithUploadedUser(userFileId: string, garment
   }
 
   const payload = await res.json();
-  
-  const taskId = payload?.data?.task_id;  
+  const taskId = payload?.data?.task_id;
+
+  if (!taskId) {
+    throw new Error('task_id not found: ' + JSON.stringify(payload));
+  }
+
+  return taskId;
+}
+
+
+/**
+ * Start a try-on task where BOTH the garment AND the person photo
+ * were local files and have been uploaded to YouCam's file API.
+ * src = person file ID, ref = garment file ID — YouCam convention.
+ */
+export async function startTryOnTaskWithBothFileIds(
+  garmentFileId: string,
+  userFileId: string,
+  category: GarmentCategory = 'auto',
+): Promise<string> {
+  const body = {
+    src_file_id: userFileId,    // src = person (uploaded file)
+    ref_file_id: garmentFileId, // ref = garment (uploaded file)
+    garment_category: category,
+  };
+
+  const res = await fetch(TASK_ENDPOINT, {
+    method: 'POST',
+    headers: getHeaders(),
+    body: JSON.stringify(body),
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Start task (both file IDs) failed (${res.status}): ${text}`);
+  }
+
+  const payload = await res.json();
+  const taskId = payload?.data?.task_id;
 
   if (!taskId) {
     throw new Error('task_id not found: ' + JSON.stringify(payload));

@@ -42,6 +42,7 @@ export default function GarmentGrid({selectedGarment, onSelect}: GarmentGridProp
       imageUrl: url,
       description: 'Custom uploaded garment',
       price: '—',
+      localFile: file, // carry the File so the API layer can upload it
     };
     setCustomGarment(custom);
     onSelect(custom);
