@@ -8,6 +8,8 @@ export interface Garment {
   imageUrl: string;
   description: string;
   price: string;
+  /** Present only for custom user-uploaded garments (blob: URL). Used to upload the file to YouCam. */
+  localFile?: File;
 }
 
 /**
