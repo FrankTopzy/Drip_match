@@ -66,4 +66,36 @@ export const garments: Garment[] = [
     description: 'Lightweight linen button-up, perfect for summer.',
     price: '$44.99',
   },
+  {
+    id: 'g7',
+    name: 'Shirt & Trouser',
+    category: 'full_body',
+    imageUrl: 'https://drip-match.vercel.app/garments/testFit7.jpg',
+    description: 'A clean, minimalist outfit.',
+    price: '$56.99',
+  },
+  {
+    id: 'g8',
+    name: 'Normal Black Hoodie',
+    category: 'upper_body',
+    imageUrl: 'https://drip-match.vercel.app/garments/testFit8.jpg',
+    description: 'A clean, minimalist hoodie for everyday wear.',
+    price: '$21.99',
+  },
+  {
+    id: 'g9',
+    name: 'Spider Hoddie',
+    category: 'upper_body',
+    imageUrl: 'https://drip-match.vercel.app/garments/testFit9.jpg',
+    description: 'A clean, minimalist hoodie for everyday wear.',
+    price: '$32.99',
+  },
+  {
+    id: 'g10',
+    name: 'Agbada',
+    category: 'full_body',
+    imageUrl: 'https://drip-match.vercel.app/garments/testFit10.jpg',
+    description: 'A native dress.',
+    price: '$39.99',
+  }
 ];
