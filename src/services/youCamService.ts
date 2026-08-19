@@ -99,7 +99,7 @@ export async function uploadFile(file: File): Promise<string> {
     }),
   });
 
-  console.log(file);
+  //console.log(file);
 
   if (!initRes.ok) {
     const text = await initRes.text();
