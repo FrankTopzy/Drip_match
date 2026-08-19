@@ -5,7 +5,7 @@ import GarmentGrid from './components/GarmentGrid';
 import PhotoUploader from './components/PhotoUploader';
 import ResultViewer from './components/ResultViewer';
 import LoadingOverlay from './components/LoadingOverlay';
-import { tryOnWithUrls, uploadFile, startTryOnTaskWithUploadedUser, pollTaskResult } from '../../services/youCamService';
+import { tryOnWithUrls, uploadFile, startTryOnTaskWithUploadedUser, startTryOnTaskWithBothFileIds, pollTaskResult } from '../../services/youCamService';
 import type { Garment } from '../../data/garments';
 import type { TryOnResult } from '../../services/youCamService';
 import './laboratory.css';
@@ -66,25 +66,44 @@ function Laboratory() {
     try {
       let tryOnResult: TryOnResult;
 
-      if (referenceFile) {
-        // User uploaded a file — use the File Upload flow
+      const isCustomGarment = !!selectedGarment.localFile;
+
+      if (referenceFile && isCustomGarment) {
+        // Both the person photo AND the garment are local files.
+        // Upload both to YouCam so their servers can access them.
         setStatusMessage('Uploading your photo...');
+        const userFileId = await uploadFile(referenceFile);
+
+        setStatusMessage('Uploading garment...');
+        const garmentFileId = await uploadFile(selectedGarment.localFile!);
 
         setStatusMessage('Starting try-on task...');
+        const taskId = await startTryOnTaskWithBothFileIds(
+          garmentFileId,
+          userFileId,
+          selectedGarment.category,
+        );
 
-        const fileId = await uploadFile(referenceFile);
-        
+        setStatusMessage('Processing your look...');
+        tryOnResult = await pollTaskResult(taskId);
+
+      } else if (referenceFile) {
+        // Person photo is a local file; garment is a public URL.
+        setStatusMessage('Uploading your photo...');
+        const userFileId = await uploadFile(referenceFile);
+
+        setStatusMessage('Starting try-on task...');
         const taskId = await startTryOnTaskWithUploadedUser(
-          fileId,
+          userFileId,
           selectedGarment.imageUrl,
           selectedGarment.category,
         );
 
         setStatusMessage('Processing your look...');
-        
         tryOnResult = await pollTaskResult(taskId);
+
       } else {
-        // Using a sample reference URL — direct URL flow
+        // Both garment and reference photo are public URLs — direct URL flow.
         tryOnResult = await tryOnWithUrls(
           selectedGarment.imageUrl,
           referencePhotoUrl,
