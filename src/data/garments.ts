@@ -70,7 +70,7 @@ export const garments: Garment[] = [
     id: 'g7',
     name: 'Shirt & Trouser',
     category: 'full_body',
-    imageUrl: 'https://drip-match.vercel.app/garments/testFit7.jpg',
+    imageUrl: 'https://drip-match.vercel.app/garments/testFit7.avif',
     description: 'A clean, minimalist outfit.',
     price: '$56.99',
   },
