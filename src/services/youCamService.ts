@@ -49,9 +49,11 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
  * @param category  Garment category hint (default: 'auto')
  * @returns The task ID for polling
  */
-export async function startTryOnTask(garmentUrl: string, referenceUrl: string, category: GarmentCategory = 'auto',
-): Promise<string> {
-  const res = await fetch(TASK_ENDPOINT, {
+
+
+export async function startTryOnTask(garmentUrl: string, referenceUrl: string, category: GarmentCategory = 'auto',): Promise<string> {
+
+  const response = await fetch(TASK_ENDPOINT, {
     method: 'POST',
     headers: getHeaders(),
     body: JSON.stringify({
@@ -61,13 +63,15 @@ export async function startTryOnTask(garmentUrl: string, referenceUrl: string, c
     }),
   });
 
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`Start task failed (${res.status}): ${text}`);
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(`Start task failed (${response.status}): ${text}`);
   }
 
-  const payload = await res.json();
+  const payload = await response.json();
+
   const taskId = payload?.data?.task_id;
+
   if (!taskId) {
     throw new Error(
       'task_id not found in response: ' + JSON.stringify(payload),
@@ -169,6 +173,7 @@ export async function startTryOnTaskWithUploadedUser(
   }
 
   const payload = await res.json();
+
   const taskId = payload?.data?.task_id;
 
   if (!taskId) {
@@ -215,9 +220,6 @@ export async function startTryOnTaskWithBothFileIds(
 
   return taskId;
 }
-
-
-
 
 // ─── Polling ────────────────────────────────────────────────────────────
 /**
