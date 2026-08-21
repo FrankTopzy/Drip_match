@@ -17,7 +17,7 @@ type Category = {
 const categories: Category[] = [
   { key: 'all', label: 'All' },
   { key: 'upper_body', label: 'Tops' },
-  { key: 'lower_body', label: 'Bottoms' },
+  { key: 'lower_body', label: 'Pants' },
   { key: 'full_body', label: 'Full Outfits' },
 ];
 
@@ -34,7 +34,9 @@ export default function GarmentGrid({selectedGarment, onSelect}: GarmentGridProp
 
   const handleCustomFile = useCallback((file: File) => {
     if (!file.type.startsWith('image/')) return;
+
     const url = URL.createObjectURL(file);
+
     const custom: Garment = {
       id: CUSTOM_GARMENT_ID,
       name: file.name.replace(/\.[^.]+$/, '') || 'My Garment',
@@ -44,14 +46,19 @@ export default function GarmentGrid({selectedGarment, onSelect}: GarmentGridProp
       price: '—',
       localFile: file, // carry the File so the API layer can upload it
     };
+
     setCustomGarment(custom);
     onSelect(custom);
   }, [onSelect]);
 
 
   const handleFileInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target);
+    
     const file = e.target.files?.[0];
+
     if (file) handleCustomFile(file);
+
     e.target.value = '';
   }, [handleCustomFile]);
 
@@ -59,6 +66,8 @@ export default function GarmentGrid({selectedGarment, onSelect}: GarmentGridProp
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     setIsDragOver(false);
+    console.log(e);
+    
     const file = e.dataTransfer.files?.[0];
     if (file) handleCustomFile(file);
   }, [handleCustomFile]);
@@ -67,6 +76,7 @@ export default function GarmentGrid({selectedGarment, onSelect}: GarmentGridProp
   const handleRemoveCustom = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     if (customGarment) URL.revokeObjectURL(customGarment.imageUrl);
+    
     setCustomGarment(null);
     if (selectedGarment?.id === CUSTOM_GARMENT_ID) {
       // deselect — parent expects a Garment; pass first catalogued garment as fallback
