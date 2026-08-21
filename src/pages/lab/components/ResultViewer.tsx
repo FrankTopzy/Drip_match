@@ -101,6 +101,11 @@ export default function ResultViewer({
     const x = clientX - rect.left;
     const pct = Math.max(0, Math.min(100, (x / rect.width) * 100));
     setSliderPosition(pct);
+
+    //console.log(x);
+    //console.log(rect.left);
+    
+    
   }, []);
 
   const handleMouseDown = useCallback(() => {
@@ -183,10 +188,7 @@ export default function ResultViewer({
         <img src={resultImageUrl} alt="Try-on result" className="comparison-img comparison-img--after" />
 
         {/* "Before" image — clipped by slider */}
-        <div
-          className="comparison-before-clip"
-          style={{ width: `${sliderPosition}%` }}
-        >
+        <div className="comparison-before-clip" style={{ width: `${sliderPosition}%` }} >
           <img
             src={originalPhotoUrl}
             alt="Original photo"
@@ -195,10 +197,7 @@ export default function ResultViewer({
           <span className="comparison-label comparison-label--before">Before</span>
         </div>
 
-        <span
-          className="comparison-label comparison-label--after"
-          style={{ right: `${100 - sliderPosition > 15 ? 100 - sliderPosition - 5 : 2}%` }}
-        >
+        <span className="comparison-label comparison-label--after" style={{ right: `${100 - sliderPosition > 15 ? 100 - sliderPosition - 5 : 2}%` }}>
           After
         </span>
 
